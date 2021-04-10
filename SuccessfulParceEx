@@ -1,14 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 
-link = 'https://httpbin.org/#/'
+link = 'https://browser-info.ru/'
 
-responce = requests.get(link).text
-
+responce = requests.get(link).text 
 soup = BeautifulSoup(responce, 'lxml')
 
-block_js = soup.find('div', id="swagger-ui")
+block_raw = soup.find('div', id="left_opisanie")
 
-result_js = block_js.find_all('code')[0].text
+block_processed = block_raw.find_all('ol')[0].text # class - index value
 
-print(result_js)
+print(block_processed)
