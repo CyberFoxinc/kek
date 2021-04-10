@@ -1,0 +1,14 @@
+import requests
+from bs4 import BeautifulSoup
+
+link = 'https://httpbin.org/#/'
+
+responce = requests.get(link).text
+
+soup = BeautifulSoup(responce, 'lxml')
+
+block_js = soup.find('div', id="swagger-ui")
+
+result_js = block_js.find_all('code')[0].text
+
+print(result_js)
